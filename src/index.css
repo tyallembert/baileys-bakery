@@ -26,21 +26,6 @@
   --color-accent-500: oklch(0.75 0.18 85);
   --color-accent-600: oklch(0.68 0.18 85);
 
-  /* Background: Warm cream */
-  --color-background: oklch(0.99 0.01 95);
-  --color-foreground: oklch(0.20 0.02 250);
-
-  /* Card/Surface */
-  --color-card: oklch(1.00 0 0);
-  --color-card-foreground: oklch(0.20 0.02 250);
-
-  /* Muted */
-  --color-muted: oklch(0.96 0.01 250);
-  --color-muted-foreground: oklch(0.50 0.02 250);
-
-  /* Border */
-  --color-border: oklch(0.90 0.02 250);
-
   /* Radius */
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
@@ -48,10 +33,53 @@
   --radius-xl: 1.5rem;
 }
 
+/* ==========================================
+   LIGHT MODE (default)
+   ========================================== */
+:root {
+  --color-background: oklch(0.99 0.01 95);
+  --color-foreground: oklch(0.20 0.02 250);
+  --color-card: oklch(1.00 0 0);
+  --color-card-foreground: oklch(0.20 0.02 250);
+  --color-muted: oklch(0.96 0.01 250);
+  --color-muted-foreground: oklch(0.45 0.02 250);
+  --color-border: oklch(0.90 0.02 250);
+  --color-input: oklch(0.90 0.02 250);
+  --color-ring: oklch(0.45 0.14 250);
+}
+
+/* ==========================================
+   DARK MODE (system preference)
+   ========================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(0.15 0.02 250);
+    --color-foreground: oklch(0.95 0.01 250);
+    --color-card: oklch(0.20 0.02 250);
+    --color-card-foreground: oklch(0.95 0.01 250);
+    --color-muted: oklch(0.25 0.02 250);
+    --color-muted-foreground: oklch(0.65 0.02 250);
+    --color-border: oklch(0.30 0.02 250);
+    --color-input: oklch(0.25 0.02 250);
+    --color-ring: oklch(0.65 0.15 220);
+  }
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Utility for SVG fills that respect theme */
+.fill-background {
+  fill: var(--color-background);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Animation utilities for delightful micro-interactions */

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -19,6 +20,8 @@ export default function ProductModal({
   open,
   onClose,
 }: ProductModalProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   if (!product) return null;
 
   const imageUrl =
@@ -26,20 +29,37 @@ export default function ProductModal({
   const bakesyUrl = `https://baileys-bakery.bakesy.app/offerings/${product.slug}`;
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl rounded-2xl border-0 shadow-2xl p-0 overflow-hidden">
+    <Dialog open={open} onOpenChange={(open) => {
+      if (!open) {
+        setImageLoaded(false);
+      }
+      onClose();
+    }}>
+      <DialogContent className="max-w-2xl rounded-2xl border-0 shadow-2xl p-0 overflow-hidden bg-card">
         <div className="grid md:grid-cols-2">
           {/* Image side */}
-          <div className="aspect-square md:aspect-auto overflow-hidden bg-muted">
+          <div className="aspect-square md:aspect-auto overflow-hidden bg-muted rounded-l-2xl md:rounded-l-2xl rounded-t-2xl md:rounded-tr-none relative min-h-[250px]">
+            {/* Loading skeleton */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-muted flex items-center justify-center">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-16 h-16 rounded-full bg-primary-200/50 dark:bg-primary-700/50 animate-pulse" />
+                  <div className="w-10 h-10 border-4 border-primary-200 dark:border-primary-700 border-t-primary-500 dark:border-t-primary-400 rounded-full animate-spin" />
+                </div>
+              </div>
+            )}
             <img
               src={imageUrl}
               alt={product.name}
-              className="h-full w-full object-cover"
+              onLoad={() => setImageLoaded(true)}
+              className={`h-full w-full object-cover transition-opacity duration-300 ease-out ${
+                imageLoaded ? "opacity-100" : "opacity-0"
+              }`}
             />
           </div>
 
           {/* Content side */}
-          <div className="p-6 flex flex-col">
+          <div className="p-6 flex flex-col bg-card">
             <DialogHeader className="text-left">
               <DialogTitle className="font-display text-2xl font-bold text-primary-800 dark:text-primary-100">
                 {product.name}

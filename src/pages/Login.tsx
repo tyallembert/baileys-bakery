@@ -64,7 +64,7 @@ export default function Login() {
           <div className="mx-auto mb-4 w-16 h-16 bg-primary-100 dark:bg-primary-800/50 rounded-2xl flex items-center justify-center">
             <span className="text-3xl">🧁</span>
           </div>
-          <CardTitle className="text-2xl font-bold text-primary-800 dark:text-primary-100">
+          <CardTitle className="font-display text-2xl font-bold text-primary-800 dark:text-primary-100">
             {flow === "signIn" ? "Welcome Back" : "Create Account"}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
@@ -131,7 +131,7 @@ export default function Login() {
 
             <Button
               type="submit"
-              className="w-full h-12 bg-primary-700 hover:bg-primary-600 text-white font-medium rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-700/25"
+              className="w-full h-12 bg-primary-700 hover:bg-primary-600 text-white font-medium rounded-xl transition-all duration-200 ease-out hover:shadow-lg hover:shadow-primary-700/25 hover:-translate-y-0.5 active:scale-[0.98]"
               disabled={submitting}
             >
               {submitting ? (
@@ -154,7 +154,7 @@ export default function Login() {
                 setFlow(flow === "signIn" ? "signUp" : "signIn");
                 setError(null);
               }}
-              className="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 font-medium transition-colors"
+              className="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 font-medium transition-colors duration-200 ease-out"
             >
               {flow === "signIn"
                 ? "Need an account? Sign up"

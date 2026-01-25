@@ -14,10 +14,15 @@ interface ProductModalProps {
   onClose: () => void;
 }
 
-export default function ProductModal({ product, open, onClose }: ProductModalProps) {
+export default function ProductModal({
+  product,
+  open,
+  onClose,
+}: ProductModalProps) {
   if (!product) return null;
 
-  const imageUrl = product.images[0]?.fullUrl ?? product.image ?? "/placeholder-product.svg";
+  const imageUrl =
+    product.images[0]?.fullUrl ?? product.image ?? "/placeholder-product.svg";
   const bakesyUrl = `https://baileys-bakery.bakesy.app/offerings/${product.slug}`;
 
   return (
@@ -36,12 +41,12 @@ export default function ProductModal({ product, open, onClose }: ProductModalPro
           {/* Content side */}
           <div className="p-6 flex flex-col">
             <DialogHeader className="text-left">
-              <DialogTitle className="text-2xl font-bold text-primary-800">
+              <DialogTitle className="font-display text-2xl font-bold text-primary-800 dark:text-primary-100">
                 {product.name}
               </DialogTitle>
             </DialogHeader>
 
-            <p className="text-3xl font-bold text-accent-500 mt-4">
+            <p className="text-3xl font-bold text-accent-600 dark:text-accent-400 mt-4">
               {formatPrice(product.priceCents)}
               {product.priceType !== "fixed" && (
                 <span className="text-base font-normal text-muted-foreground ml-2">
@@ -59,7 +64,7 @@ export default function ProductModal({ product, open, onClose }: ProductModalPro
             <Button
               asChild
               size="lg"
-              className="w-full mt-6 bg-accent-500 hover:bg-accent-600 text-primary-900 font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+              className="w-full mt-6 bg-accent-500 hover:bg-accent-400 text-primary-900 font-semibold rounded-xl transition-all duration-200 ease-out hover:shadow-lg hover:shadow-accent-500/25 hover:-translate-y-0.5 active:scale-[0.98]"
             >
               <a href={bakesyUrl} target="_blank" rel="noopener noreferrer">
                 Order on Bakesy

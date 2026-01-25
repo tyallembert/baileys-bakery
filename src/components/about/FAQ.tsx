@@ -55,14 +55,14 @@ export default function FAQ() {
       <div className="max-w-3xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <span className="inline-block px-4 py-1 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-200 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-200 rounded-full text-sm font-medium mb-4 transition-colors duration-200">
             FAQ
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-800 dark:text-primary-100 mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-800 dark:text-primary-100 mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-muted-foreground">
-            Everything you need to know about ordering from Baileys Bakery
+            Everything you need to know about ordering from Bailey's Bakery
           </p>
         </div>
 
@@ -76,12 +76,12 @@ export default function FAQ() {
             <AccordionItem
               key={faq._id}
               value={faq._id}
-              className="bg-card rounded-xl px-6 border border-border/50 shadow-sm hover:shadow-md transition-shadow duration-300 data-[state=open]:shadow-md data-[state=open]:border-primary-200 dark:data-[state=open]:border-primary-700"
+              className="bg-card rounded-xl px-6 border border-border/50 shadow-sm transition-all duration-200 ease-out hover:shadow-md data-[state=open]:shadow-md data-[state=open]:border-primary-200 dark:data-[state=open]:border-primary-700"
               style={{ animationDelay: `${200 + index * 50}ms` }}
             >
               <AccordionTrigger className="text-left text-lg font-medium text-primary-800 dark:text-primary-100 hover:no-underline py-5 group">
                 <span className="flex items-center gap-3">
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-800/50 text-primary-600 dark:text-primary-300 flex items-center justify-center text-sm font-bold group-hover:bg-primary-200 dark:group-hover:bg-primary-700/50 transition-colors">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-800/50 text-primary-600 dark:text-primary-300 flex items-center justify-center text-sm font-bold transition-all duration-200 ease-out group-hover:bg-primary-200 dark:group-hover:bg-primary-700/50">
                     {index + 1}
                   </span>
                   {faq.question}
@@ -101,7 +101,7 @@ export default function FAQ() {
           </p>
           <a
             href="mailto:hello@baileysbakery.com"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white font-medium rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-700 hover:bg-primary-600 text-white font-medium rounded-xl transition-all duration-200 ease-out hover:shadow-lg hover:shadow-primary-700/25 hover:-translate-y-0.5 active:scale-[0.98]"
           >
             <svg
               className="w-5 h-5"

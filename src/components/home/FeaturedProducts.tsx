@@ -10,7 +10,7 @@ export default function FeaturedProducts() {
     return (
       <section className="py-24 px-6 bg-muted/30">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-primary-800 mb-12 text-center">
+          <h2 className="font-display text-4xl font-bold text-primary-800 dark:text-primary-100 mb-12 text-center">
             Featured Treats
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -34,7 +34,7 @@ export default function FeaturedProducts() {
   return (
     <section className="py-24 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-primary-800 mb-12 text-center animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <h2 className="font-display text-4xl font-bold text-primary-800 dark:text-primary-100 mb-12 text-center animate-in fade-in slide-in-from-bottom-4 duration-700">
           Featured Treats
         </h2>
         <ProductGrid products={products} columns={3} />
@@ -42,7 +42,7 @@ export default function FeaturedProducts() {
           <Button
             asChild
             size="lg"
-            className="bg-primary-700 hover:bg-primary-600 rounded-xl font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+            className="bg-primary-700 hover:bg-primary-600 rounded-xl font-semibold transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary-700/25 active:scale-[0.98]"
           >
             <Link to="/menu">See Full Menu</Link>
           </Button>

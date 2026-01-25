@@ -242,7 +242,7 @@ export default function ContentForm() {
         <Button
           type="submit"
           disabled={saving}
-          className="bg-primary-700 hover:bg-primary-600 rounded-xl h-11 px-6 transition-all duration-300 hover:shadow-lg hover:shadow-primary-700/25"
+          className="bg-primary-700 hover:bg-primary-600 rounded-xl h-11 px-6 transition-all duration-200 ease-out hover:shadow-lg hover:shadow-primary-700/25 hover:-translate-y-0.5 active:scale-[0.98]"
         >
           {saving ? (
             <span className="flex items-center gap-2">

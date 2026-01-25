@@ -97,7 +97,7 @@ export default function FaqManager() {
         <Button
           onClick={startCreate}
           disabled={editingId !== null}
-          className="bg-primary-700 hover:bg-primary-600 rounded-xl h-10 px-4 transition-all duration-300 hover:shadow-lg hover:shadow-primary-700/25"
+          className="bg-primary-700 hover:bg-primary-600 rounded-xl h-10 px-4 transition-all duration-200 ease-out hover:shadow-lg hover:shadow-primary-700/25 hover:-translate-y-0.5 active:scale-[0.98]"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add FAQ
@@ -108,7 +108,7 @@ export default function FaqManager() {
         {faqItems.map((faq, index) => (
           <Card
             key={faq._id}
-            className="rounded-xl border-border/50 overflow-hidden transition-all duration-300 hover:shadow-md"
+            className="rounded-xl border-border/50 overflow-hidden transition-all duration-200 ease-out hover:shadow-md"
           >
             <CardContent className="p-0">
               {editingId === faq._id ? (

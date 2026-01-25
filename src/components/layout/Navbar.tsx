@@ -31,9 +31,9 @@ export default function Navbar() {
           to="/"
           className="flex items-center gap-3 group"
         >
-          <Logo className="h-10 w-10 transition-transform duration-300 group-hover:scale-110" />
-          <span className="font-bold text-xl tracking-tight">
-            Baileys Bakery
+          <Logo className="h-10 w-10 transition-transform duration-300 ease-out group-hover:scale-110" />
+          <span className="font-display font-bold text-lg tracking-[0.15em] uppercase">
+            Bailey's Bakery
           </span>
         </Link>
 
@@ -44,23 +44,26 @@ export default function Navbar() {
               key={link.to}
               to={link.to}
               className={cn(
-                "relative py-1 font-medium transition-colors",
+                "relative py-1 font-medium transition-all duration-200 ease-out",
                 isActive(link.to)
                   ? "text-white"
                   : "text-primary-200 hover:text-white"
               )}
             >
               {link.label}
-              {isActive(link.to) && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500 rounded-full" />
-              )}
+              <span
+                className={cn(
+                  "absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500 rounded-full transition-all duration-200 ease-out",
+                  isActive(link.to) ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                )}
+              />
             </Link>
           ))}
 
           {isAuthenticated ? (
             <Button
               asChild
-              className="bg-accent-500 hover:bg-accent-400 text-primary-900 font-semibold rounded-xl px-5 transition-all duration-300 hover:shadow-lg hover:shadow-accent-500/25 hover:-translate-y-0.5"
+              className="bg-accent-500 hover:bg-accent-400 text-primary-900 font-semibold rounded-xl px-5 transition-all duration-200 ease-out hover:shadow-lg hover:shadow-accent-500/25 hover:-translate-y-0.5"
             >
               <Link to="/admin">Admin</Link>
             </Button>
@@ -68,16 +71,19 @@ export default function Navbar() {
             <Link
               to="/login"
               className={cn(
-                "relative py-1 font-medium transition-colors",
+                "relative py-1 font-medium transition-all duration-200 ease-out",
                 isActive("/login")
                   ? "text-white"
                   : "text-primary-200 hover:text-white"
               )}
             >
               Login
-              {isActive("/login") && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500 rounded-full" />
-              )}
+              <span
+                className={cn(
+                  "absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500 rounded-full transition-all duration-200 ease-out",
+                  isActive("/login") ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                )}
+              />
             </Link>
           )}
         </div>
@@ -85,11 +91,11 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg hover:bg-primary-700 transition-colors"
+          className="md:hidden p-2 rounded-lg transition-all duration-200 ease-out hover:bg-primary-700"
           aria-label="Toggle menu"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 transition-transform duration-200 ease-out"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -123,7 +129,7 @@ export default function Navbar() {
                 to={link.to}
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "px-4 py-2 rounded-lg font-medium transition-colors",
+                  "px-4 py-2 rounded-lg font-medium transition-all duration-200 ease-out",
                   isActive(link.to)
                     ? "bg-primary-700 text-white"
                     : "text-primary-200 hover:bg-primary-700 hover:text-white"
@@ -137,7 +143,7 @@ export default function Navbar() {
               <Link
                 to="/admin"
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 bg-accent-500 text-primary-900 font-semibold rounded-lg text-center"
+                className="px-4 py-2 bg-accent-500 text-primary-900 font-semibold rounded-lg text-center transition-all duration-200 ease-out hover:bg-accent-400"
               >
                 Admin
               </Link>
@@ -146,7 +152,7 @@ export default function Navbar() {
                 to="/login"
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "px-4 py-2 rounded-lg font-medium transition-colors",
+                  "px-4 py-2 rounded-lg font-medium transition-all duration-200 ease-out",
                   isActive("/login")
                     ? "bg-primary-700 text-white"
                     : "text-primary-200 hover:bg-primary-700 hover:text-white"

@@ -39,14 +39,14 @@ export default function Admin() {
             <span className="inline-block px-3 py-1 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-200 rounded-full text-xs font-medium mb-2">
               Admin Dashboard
             </span>
-            <h1 className="text-3xl md:text-4xl font-bold text-primary-800 dark:text-primary-100">
+            <h1 className="font-display text-3xl md:text-4xl font-bold text-primary-800 dark:text-primary-100">
               Manage Your Site
             </h1>
           </div>
           <Button
             variant="outline"
             onClick={() => signOut()}
-            className="rounded-xl h-10 px-4 transition-all duration-300 hover:bg-red-50 hover:text-red-600 hover:border-red-200 dark:hover:bg-red-950/30 dark:hover:text-red-400 dark:hover:border-red-800/50"
+            className="rounded-xl h-10 px-4 transition-all duration-200 ease-out hover:bg-red-50 hover:text-red-600 hover:border-red-200 dark:hover:bg-red-950/30 dark:hover:text-red-400 dark:hover:border-red-800/50 active:scale-[0.98]"
           >
             <svg
               className="w-4 h-4 mr-2"

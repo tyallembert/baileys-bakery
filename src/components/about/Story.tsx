@@ -6,7 +6,7 @@ export default function Story() {
 
   const story =
     content?.aboutStory ??
-    `Baileys Bakery started in my home kitchen with a simple dream: to share the joy of homemade baked goods with my community.
+    `Bailey's Bakery started in my home kitchen with a simple dream: to share the joy of homemade baked goods with my community.
 
 Every recipe has been perfected over years of baking for family and friends. What started as birthday cakes for neighbors has grown into a beloved local bakery serving celebrations big and small.
 
@@ -23,10 +23,10 @@ Thank you for letting me be part of your special moments.`;
       <div className="max-w-3xl mx-auto relative z-10">
         {/* Header with decorative line */}
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <span className="inline-block px-4 py-1 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-200 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-200 rounded-full text-sm font-medium mb-4 transition-colors duration-200">
             About Us
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-primary-800 dark:text-primary-100 mb-4">
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-primary-800 dark:text-primary-100 mb-4">
             Our Story
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto rounded-full" />
@@ -47,9 +47,9 @@ Thank you for letting me be part of your special moments.`;
 
         {/* Decorative signature element */}
         <div className="mt-12 text-center animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-card rounded-2xl shadow-sm border border-border">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-card rounded-2xl shadow-sm border border-border transition-all duration-200 ease-out hover:shadow-md">
             <span className="text-2xl">🧁</span>
-            <span className="text-primary-700 dark:text-primary-300 font-medium italic">
+            <span className="font-display text-primary-700 dark:text-primary-300 font-medium italic">
               — Bailey
             </span>
           </div>

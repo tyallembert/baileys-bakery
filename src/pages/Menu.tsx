@@ -64,7 +64,7 @@ export default function Menu() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-primary-800 dark:text-primary-100 mb-4">
+          <h1 className="font-display text-3xl font-bold text-primary-800 dark:text-primary-100 mb-4">
             Our Menu
           </h1>
           <p className="text-muted-foreground mb-6">
@@ -97,7 +97,7 @@ export default function Menu() {
           <span className="inline-block px-4 py-1 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-200 rounded-full text-sm font-medium mb-4">
             Browse Our Selection
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-primary-800 dark:text-primary-100 mb-4">
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-primary-800 dark:text-primary-100 mb-4">
             Our Menu
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto rounded-full" />
@@ -109,9 +109,9 @@ export default function Menu() {
             variant={activeCategory === null ? "default" : "outline"}
             onClick={() => setActiveCategory(null)}
             className={cn(
-              "rounded-xl transition-all duration-300",
+              "rounded-xl transition-all duration-200 ease-out active:scale-[0.98]",
               activeCategory === null
-                ? "bg-primary-700 hover:bg-primary-600 shadow-lg shadow-primary-700/25"
+                ? "bg-primary-700 hover:bg-primary-600 shadow-lg shadow-primary-700/25 hover:-translate-y-0.5"
                 : "hover:border-primary-300 dark:hover:border-primary-600"
             )}
           >
@@ -123,9 +123,9 @@ export default function Menu() {
               variant={activeCategory === category.id ? "default" : "outline"}
               onClick={() => setActiveCategory(category.id)}
               className={cn(
-                "rounded-xl transition-all duration-300",
+                "rounded-xl transition-all duration-200 ease-out active:scale-[0.98]",
                 activeCategory === category.id
-                  ? "bg-primary-700 hover:bg-primary-600 shadow-lg shadow-primary-700/25"
+                  ? "bg-primary-700 hover:bg-primary-600 shadow-lg shadow-primary-700/25 hover:-translate-y-0.5"
                   : "hover:border-primary-300 dark:hover:border-primary-600"
               )}
             >
@@ -140,7 +140,7 @@ export default function Menu() {
             <section key={category.id}>
               {!activeCategory && (
                 <div className="mb-8">
-                  <h2 className="text-2xl md:text-3xl font-bold text-primary-800 dark:text-primary-100 mb-2">
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-primary-800 dark:text-primary-100 mb-2">
                     {category.name}
                   </h2>
                   <div className="w-16 h-1 bg-gradient-to-r from-accent-400 to-accent-500 rounded-full" />

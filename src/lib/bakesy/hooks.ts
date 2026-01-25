@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchBakesy, BAKERY_SLUG } from "./client";
-import { BAKERY_OFFERINGS_QUERY } from "./queries";
-import type { BakeryOfferingsResponse, BakesyOffering, BakesyCategory } from "./types";
+import { useConvex } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import type { BakesyOffering, BakesyCategory } from "./types";
 
 export function useBakeryOfferings() {
+  const convex = useConvex();
+
   return useQuery({
-    queryKey: ["bakery", "offerings", BAKERY_SLUG],
-    queryFn: () =>
-      fetchBakesy<BakeryOfferingsResponse>(BAKERY_OFFERINGS_QUERY, {
-        slug: BAKERY_SLUG,
-        visit: false,
-      }),
+    queryKey: ["bakery", "offerings"],
+    queryFn: async () => {
+      const result = await convex.action(api.bakesy.getOfferings, {});
+      return result;
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 }
 
@@ -34,9 +36,8 @@ export function useFeaturedProducts(limit = 6) {
 export function useCategoriesWithProducts() {
   const { data, ...rest } = useBakeryOfferings();
 
-  const categories: BakesyCategory[] = data?.bakery.categories.filter(
-    (cat) => cat.offerings.length > 0
-  ) ?? [];
+  const categories: BakesyCategory[] =
+    data?.bakery.categories.filter((cat) => cat.offerings.length > 0) ?? [];
 
   return { data: categories, ...rest };
 }

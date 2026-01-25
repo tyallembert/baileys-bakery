@@ -53,3 +53,31 @@ body {
   color: var(--color-foreground);
   font-family: system-ui, -apple-system, sans-serif;
 }
+
+/* Animation utilities for delightful micro-interactions */
+@keyframes animate-in {
+  from {
+    opacity: var(--tw-enter-opacity, 0);
+    transform: translateY(var(--tw-enter-translate-y, 0));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: animate-in var(--tw-animate-duration, 0.5s) ease-out forwards;
+}
+
+.fade-in {
+  --tw-enter-opacity: 0;
+}
+
+.slide-in-from-bottom-4 {
+  --tw-enter-translate-y: 1rem;
+}
+
+.duration-500 {
+  --tw-animate-duration: 500ms;
+}

@@ -11,6 +11,7 @@
 import type * as auth from "../auth.js";
 import type * as faqItems from "../faqItems.js";
 import type * as http from "../http.js";
+import type * as seed from "../seed.js";
 import type * as siteContent from "../siteContent.js";
 
 import type {
@@ -23,6 +24,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   faqItems: typeof faqItems;
   http: typeof http;
+  seed: typeof seed;
   siteContent: typeof siteContent;
 }>;
 

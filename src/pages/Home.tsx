@@ -1,3 +1,13 @@
+import Hero from "@/components/home/Hero";
+import AboutPreview from "@/components/home/AboutPreview";
+import FeaturedProducts from "@/components/home/FeaturedProducts";
+
 export default function Home() {
-  return <div className="p-8">Home Page</div>;
+  return (
+    <>
+      <Hero />
+      <AboutPreview />
+      <FeaturedProducts />
+    </>
+  );
 }

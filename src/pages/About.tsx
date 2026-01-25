@@ -1,3 +1,11 @@
+import Story from "@/components/about/Story";
+import FAQ from "@/components/about/FAQ";
+
 export default function About() {
-  return <div className="p-8">About Page</div>;
+  return (
+    <>
+      <Story />
+      <FAQ />
+    </>
+  );
 }

@@ -29,9 +29,10 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
           src={imageUrl}
           alt={product.name}
           onLoad={() => setImageLoaded(true)}
-          className={`h-full w-full object-cover transition-all duration-300 ease-out group-hover:scale-105 ${
+          className={`h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110 ${
             imageLoaded ? "opacity-100" : "opacity-0"
           }`}
+          style={{ transitionProperty: 'transform, opacity', transitionDuration: '500ms' }}
         />
       </div>
       <CardContent className="p-5 bg-card rounded-b-2xl">

@@ -2,19 +2,18 @@ import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
+import LogoLettering from "@/components/layout/LogoLettering";
 
 export default function Hero() {
   const content = useQuery(api.siteContent.get);
 
-  const title = content?.heroTitle ?? "Welcome to Bailey's Bakery";
-  const subtitle = content?.heroSubtitle ?? "Homemade treats baked with love";
-  const ctaText = content?.heroCtaText ?? "View Our Menu";
+  const ctaText = content?.heroCtaText ?? "Order Online";
   const ctaLink = content?.heroCtaLink ?? "/menu";
 
   return (
     <section className="relative bg-gradient-to-br from-primary-800 via-primary-700 to-primary-900 text-white py-28 px-6 overflow-hidden">
       {/* Decorative organic wave patterns like on business card */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-40">
         <svg width="1440" height="800" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_7_2)">
           <rect width="1440" height="800" fill="white"/>
@@ -33,41 +32,15 @@ export default function Hero() {
           </defs>
         </svg>
 
-        {/* <svg
-          className="absolute w-full h-full"
-          viewBox="0 0 1440 800"
-          fill="none"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <path
-            d="M-100 400C100 300 200 500 400 400C600 300 700 500 900 400C1100 300 1200 500 1400 400C1600 300 1700 500 1800 400"
-            stroke="currentColor"
-            strokeWidth="80"
-            fill="none"
-            className="text-primary-600"
-          />
-          <path
-            d="M-100 600C100 500 200 700 400 600C600 500 700 700 900 600C1100 500 1200 700 1400 600C1600 500 1700 700 1800 600"
-            stroke="currentColor"
-            strokeWidth="60"
-            fill="none"
-            className="text-primary-500"
-          />
-        </svg> */}
       </div>
 
       {/* Decorative circles for depth */}
       <div className="absolute top-10 left-10 w-64 h-64 bg-primary-600/20 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl" />
 
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
-          {title}
-        </h1>
-        <p className="text-xl md:text-2xl text-primary-200 mb-12 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-          {subtitle}
-        </p>
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+      <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
+        <LogoLettering className="w-full max-w-md md:max-w-lg mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700" />
+        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
           <Button
             asChild
             size="lg"

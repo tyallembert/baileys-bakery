@@ -4,25 +4,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary: Deep teal based on RGB(12,32,36) and RGB(39,58,62) */
-  --color-primary-50: oklch(0.97 0.02 185);
-  --color-primary-100: oklch(0.92 0.03 185);
-  --color-primary-200: oklch(0.85 0.05 185);
-  --color-primary-300: oklch(0.72 0.07 185);
-  --color-primary-400: oklch(0.55 0.08 185);
-  --color-primary-500: oklch(0.42 0.06 185);
-  --color-primary-600: oklch(0.35 0.05 185);
-  --color-primary-700: oklch(0.28 0.04 185); /* ~RGB(39,58,62) */
-  --color-primary-800: oklch(0.23 0.03 185); /* ~RGB(12,32,36) */
-  --color-primary-900: oklch(0.18 0.03 185);
+  /* Primary: Deep teal based on #1E454A */
+  --color-primary-50: oklch(0.97 0.02 190);
+  --color-primary-100: oklch(0.92 0.03 190);
+  --color-primary-200: oklch(0.85 0.05 190);
+  --color-primary-300: oklch(0.72 0.07 190);
+  --color-primary-400: oklch(0.55 0.08 190);
+  --color-primary-500: oklch(0.42 0.06 190);
+  --color-primary-600: oklch(0.35 0.05 190);
+  --color-primary-700: oklch(0.32 0.04 190); /* #3D5F63 */
+  --color-primary-800: oklch(0.27 0.04 190); /* #1E454A */
+  --color-primary-900: oklch(0.18 0.03 190);
 
-  /* Secondary: Lighter teal for accents */
-  --color-secondary-50: oklch(0.98 0.01 185);
-  --color-secondary-100: oklch(0.94 0.02 185);
-  --color-secondary-200: oklch(0.88 0.04 185);
-  --color-secondary-300: oklch(0.78 0.06 185);
-  --color-secondary-400: oklch(0.65 0.07 185);
-  --color-secondary-500: oklch(0.52 0.06 185);
+  /* Secondary: Lighter teal for accents based on #3D5F63 */
+  --color-secondary-50: oklch(0.98 0.01 190);
+  --color-secondary-100: oklch(0.94 0.02 190);
+  --color-secondary-200: oklch(0.88 0.04 190);
+  --color-secondary-300: oklch(0.78 0.06 190);
+  --color-secondary-400: oklch(0.65 0.07 190);
+  --color-secondary-500: oklch(0.52 0.06 190);
 
   /* Accent: Warm cream/gold to complement teal */
   --color-accent-400: oklch(0.88 0.08 85);
@@ -44,15 +44,15 @@
    LIGHT MODE (default)
    ========================================== */
 :root {
-  --color-background: oklch(0.98 0.01 185);
-  --color-foreground: oklch(0.20 0.03 185);
+  --color-background: oklch(0.98 0.01 190);
+  --color-foreground: oklch(0.20 0.03 190);
   --color-card: oklch(1.00 0 0);
-  --color-card-foreground: oklch(0.20 0.03 185);
-  --color-muted: oklch(0.95 0.01 185);
-  --color-muted-foreground: oklch(0.45 0.03 185);
-  --color-border: oklch(0.88 0.02 185);
-  --color-input: oklch(0.88 0.02 185);
-  --color-ring: oklch(0.35 0.05 185);
+  --color-card-foreground: oklch(0.20 0.03 190);
+  --color-muted: oklch(0.95 0.01 190);
+  --color-muted-foreground: oklch(0.45 0.03 190);
+  --color-border: oklch(0.88 0.02 190);
+  --color-input: oklch(0.88 0.02 190);
+  --color-ring: oklch(0.35 0.05 190);
 }
 
 /* ==========================================
@@ -60,15 +60,15 @@
    ========================================== */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: oklch(0.15 0.03 185);
-    --color-foreground: oklch(0.95 0.01 185);
-    --color-card: oklch(0.20 0.03 185);
-    --color-card-foreground: oklch(0.95 0.01 185);
-    --color-muted: oklch(0.25 0.03 185);
-    --color-muted-foreground: oklch(0.65 0.02 185);
-    --color-border: oklch(0.30 0.03 185);
-    --color-input: oklch(0.25 0.03 185);
-    --color-ring: oklch(0.52 0.06 185);
+    --color-background: oklch(0.15 0.03 190);
+    --color-foreground: oklch(0.82 0 0); /* #C8C8C8 */
+    --color-card: oklch(0.20 0.03 190);
+    --color-card-foreground: oklch(0.82 0 0); /* #C8C8C8 */
+    --color-muted: oklch(0.25 0.03 190);
+    --color-muted-foreground: oklch(0.75 0 0);
+    --color-border: oklch(0.30 0.03 190);
+    --color-input: oklch(0.25 0.03 190);
+    --color-ring: oklch(0.52 0.06 190);
   }
 }
 

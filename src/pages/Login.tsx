@@ -12,6 +12,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { SEO } from "@/components/seo";
+import { PAGE_SEO } from "@/lib/seo";
 
 export default function Login() {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -53,8 +55,15 @@ export default function Login() {
   };
 
   return (
-    <div className="relative min-h-[70vh] flex items-center justify-center px-6 py-20 overflow-hidden">
-      {/* Decorative background elements */}
+    <>
+      <SEO
+        title={PAGE_SEO.login.title}
+        description={PAGE_SEO.login.description}
+        canonical={PAGE_SEO.login.canonical}
+        noindex={true}
+      />
+      <div className="relative min-h-[70vh] flex items-center justify-center px-6 py-20 overflow-hidden">
+        {/* Decorative background elements */}
       <div className="absolute top-20 -left-20 w-72 h-72 bg-primary-200/30 dark:bg-primary-600/10 rounded-full blur-3xl" />
       <div className="absolute bottom-20 -right-20 w-80 h-80 bg-accent-400/20 dark:bg-accent-500/10 rounded-full blur-3xl" />
 
@@ -164,5 +173,6 @@ export default function Login() {
         </CardContent>
       </Card>
     </div>
+    </>
   );
 }

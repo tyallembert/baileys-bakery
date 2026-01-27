@@ -3,6 +3,8 @@ import { useCategoriesWithProducts } from "@/lib/bakesy";
 import { ProductGrid } from "@/components/products";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SEO, BreadcrumbSchema } from "@/components/seo";
+import { PAGE_SEO } from "@/lib/seo";
 
 export default function Menu() {
   const { data: categories, isLoading, error } = useCategoriesWithProducts();
@@ -86,8 +88,16 @@ export default function Menu() {
     : categories;
 
   return (
-    <div className="relative py-24 px-6 overflow-hidden">
-      {/* Decorative background elements */}
+    <>
+      <SEO
+        title={PAGE_SEO.menu.title}
+        description={PAGE_SEO.menu.description}
+        keywords={PAGE_SEO.menu.keywords}
+        canonical={PAGE_SEO.menu.canonical}
+      />
+      <BreadcrumbSchema items={[{ name: "Menu", path: "/menu" }]} />
+      <div className="relative py-24 px-6 overflow-hidden">
+        {/* Decorative background elements */}
       <div className="absolute top-40 -left-32 w-96 h-96 bg-primary-200/20 dark:bg-primary-600/10 rounded-full blur-3xl" />
       <div className="absolute bottom-40 -right-32 w-80 h-80 bg-accent-400/15 dark:bg-accent-500/10 rounded-full blur-3xl" />
 
@@ -167,5 +177,6 @@ export default function Menu() {
         )}
       </div>
     </div>
+    </>
   );
 }

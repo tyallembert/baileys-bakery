@@ -1,0 +1,12 @@
+# Bailey's Bakery - robots.txt
+# https://baileysbakery.com
+
+User-agent: *
+Allow: /
+
+# Disallow admin and login pages
+Disallow: /admin
+Disallow: /login
+
+# Sitemap location
+Sitemap: https://baileysbakery.com/sitemap.xml

@@ -1,26 +1,42 @@
+import { useState } from "react";
 import { useConvexAuth } from "convex/react";
-import { useAuthActions } from "@convex-dev/auth/react";
 import { Navigate } from "react-router";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AlignLeft, HelpCircle, Info } from "lucide-react";
 import ContentForm from "@/components/admin/ContentForm";
 import FaqManager from "@/components/admin/FaqManager";
 import { SEO } from "@/components/seo";
 import { PAGE_SEO } from "@/lib/seo";
 
+type TabValue = "content" | "faq";
+
+const tabs = [
+  {
+    id: "content" as const,
+    label: "Site Content",
+    description: "Edit hero and about sections",
+    icon: <AlignLeft className="w-5 h-5" />,
+  },
+  {
+    id: "faq" as const,
+    label: "FAQ Manager",
+    description: "Manage frequently asked questions",
+    icon: <HelpCircle className="w-5 h-5" />,
+  },
+];
+
 export default function Admin() {
   const { isAuthenticated, isLoading } = useConvexAuth();
-  const { signOut } = useAuthActions();
-
-  console.log("Admin page - isLoading:", isLoading, "isAuthenticated:", isAuthenticated);
+  const [activeTab, setActiveTab] = useState<TabValue>("content");
 
   if (isLoading) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
+      <div className="min-h-[80vh] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
-          <p className="text-muted-foreground">Loading...</p>
+          <div className="relative w-12 h-12">
+            <div className="absolute inset-0 border-4 border-primary-100 dark:border-primary-800/50 rounded-full" />
+            <div className="absolute inset-0 border-4 border-transparent border-t-primary-600 rounded-full animate-spin" />
+          </div>
+          <p className="text-sm text-muted-foreground font-medium">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -38,121 +54,84 @@ export default function Admin() {
         canonical={PAGE_SEO.admin.canonical}
         noindex={true}
       />
-      <div className="relative py-12 px-6 overflow-hidden min-h-[calc(100vh-200px)]">
-        {/* Decorative background elements */}
-      <div className="absolute top-20 -left-32 w-96 h-96 bg-primary-200/20 dark:bg-primary-600/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 -right-32 w-80 h-80 bg-accent-400/15 dark:bg-accent-500/10 rounded-full blur-3xl" />
 
-      <div className="max-w-4xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div>
-            <span className="inline-block px-3 py-1 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-200 rounded-full text-xs font-medium mb-2">
-              Admin Dashboard
-            </span>
-            <h1 className="font-display text-3xl md:text-4xl font-bold text-primary-800 dark:text-primary-100">
-              Manage Your Site
-            </h1>
-          </div>
-          <Button
-            variant="outline"
-            onClick={() => signOut()}
-            className="rounded-xl h-10 px-4 transition-all duration-200 ease-out hover:bg-red-50 hover:text-red-600 hover:border-red-200 dark:hover:bg-red-950/30 dark:hover:text-red-400 dark:hover:border-red-800/50 active:scale-[0.98]"
-          >
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-              />
-            </svg>
-            Sign Out
-          </Button>
-        </div>
-
-        {/* Main Card */}
-        <Card className="rounded-2xl shadow-xl border-border/50 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-          <CardHeader className="border-b border-border/50 pb-6">
-            <CardTitle className="text-xl text-primary-800 dark:text-primary-100 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+      {/* Main content area with sidebar layout */}
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar navigation */}
+          <aside className="lg:w-64 flex-shrink-0">
+            <nav className="space-y-2 lg:sticky lg:top-8">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`
+                    w-full text-left px-4 py-3.5 rounded-xl transition-all duration-200 group
+                    ${activeTab === tab.id
+                      ? "bg-primary-100/80 dark:bg-primary-800/30 text-primary-800 dark:text-primary-100 shadow-sm"
+                      : "hover:bg-muted/60 text-muted-foreground hover:text-foreground"
+                    }
+                  `}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                  />
-                </svg>
+                  <div className="flex items-center gap-3">
+                    <span className={`
+                      transition-colors duration-200
+                      ${activeTab === tab.id
+                        ? "text-primary-600 dark:text-primary-400"
+                        : "text-muted-foreground group-hover:text-foreground"
+                      }
+                    `}>
+                      {tab.icon}
+                    </span>
+                    <div>
+                      <div className="font-medium text-sm">{tab.label}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5 hidden lg:block">
+                        {tab.description}
+                      </div>
+                    </div>
+                  </div>
+                  {activeTab === tab.id && (
+                    <div className="hidden lg:block w-1 h-8 bg-primary-500 rounded-full absolute -left-px top-1/2 -translate-y-1/2" />
+                  )}
+                </button>
+              ))}
+            </nav>
+
+            {/* Quick stats or info card */}
+            <div className="mt-8 p-4 rounded-xl bg-gradient-to-br from-primary-50 to-primary-100/50 dark:from-primary-900/20 dark:to-primary-800/10 border border-primary-200/50 dark:border-primary-700/30 hidden lg:block">
+              <div className="flex items-center gap-2 text-primary-700 dark:text-primary-300 mb-2">
+                <Info className="w-4 h-4" />
+                <span className="text-xs font-semibold uppercase tracking-wider">Tip</span>
               </div>
-              Manage Site Content
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <Tabs defaultValue="content" className="w-full">
-              <TabsList className="mb-8 bg-muted/50 p-1 rounded-xl">
-                <TabsTrigger
-                  value="content"
-                  className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm px-6 py-2.5 transition-all"
-                >
-                  <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h7"
-                    />
-                  </svg>
-                  Site Content
-                </TabsTrigger>
-                <TabsTrigger
-                  value="faq"
-                  className="rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm px-6 py-2.5 transition-all"
-                >
-                  <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  FAQ
-                </TabsTrigger>
-              </TabsList>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Changes are saved to your Convex database and will appear on your live site immediately.
+              </p>
+            </div>
+          </aside>
 
-              <TabsContent value="content" className="mt-0">
-                <ContentForm />
-              </TabsContent>
+          {/* Main content panel */}
+          <main className="flex-1 min-w-0">
+            <div className="bg-card rounded-2xl border border-border/50 shadow-sm overflow-hidden">
+              {/* Panel header */}
+              <div className="px-6 py-5 border-b border-border/40 bg-muted/20">
+                <h2 className="font-display text-lg font-semibold text-primary-800 dark:text-primary-100 flex items-center gap-2">
+                  {tabs.find(t => t.id === activeTab)?.icon}
+                  {tabs.find(t => t.id === activeTab)?.label}
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {tabs.find(t => t.id === activeTab)?.description}
+                </p>
+              </div>
 
-              <TabsContent value="faq" className="mt-0">
-                <FaqManager />
-              </TabsContent>
-            </Tabs>
-          </CardContent>
-        </Card>
+              {/* Panel content */}
+              <div className="p-6">
+                {activeTab === "content" && <ContentForm />}
+                {activeTab === "faq" && <FaqManager />}
+              </div>
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
     </>
   );
 }

@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router";
 import { useConvexAuth } from "convex/react";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { User, Settings, LogOut, Menu, X } from "lucide-react";
 import Logo from "./Logo";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const { isAuthenticated } = useConvexAuth();
+  const { signOut } = useAuthActions();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close user menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const isActive = (path: string) => {
     if (path === "/") {
@@ -60,31 +75,53 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {isAuthenticated ? (
-            <Button
-              asChild
-              className="bg-accent-500 hover:bg-accent-400 text-primary-900 font-semibold rounded-xl px-5 transition-all duration-200 ease-out hover:shadow-lg hover:shadow-accent-500/25 hover:-translate-y-0.5"
-            >
-              <Link to="/admin">Admin</Link>
-            </Button>
-          ) : (
-            <Link
-              to="/login"
-              className={cn(
-                "relative py-1 font-medium transition-all duration-200 ease-out",
-                isActive("/login")
-                  ? "text-white"
-                  : "text-primary-200 hover:text-white"
-              )}
-            >
-              Login
-              <span
+          {isAuthenticated && (
+            <div className="relative" ref={userMenuRef}>
+              <button
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className={cn(
-                  "absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500 rounded-full transition-all duration-200 ease-out",
-                  isActive("/login") ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                  "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ease-out",
+                  userMenuOpen
+                    ? "bg-primary-600 text-white"
+                    : "bg-primary-700 text-primary-200 hover:bg-primary-600 hover:text-white"
                 )}
-              />
-            </Link>
+                aria-label="User menu"
+              >
+                <User className="w-5 h-5" />
+              </button>
+
+              {/* User dropdown menu */}
+              {userMenuOpen && (
+                <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-primary-900 rounded-xl shadow-xl border border-primary-100 dark:border-primary-700 py-2 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                  <div className="px-4 py-3 border-b border-primary-100 dark:border-primary-700">
+                    <p className="text-sm font-medium text-primary-800 dark:text-primary-100">Admin Account</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Manage your bakery site</p>
+                  </div>
+                  <div className="py-1">
+                    <Link
+                      to="/admin"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-primary-700 dark:text-primary-200 hover:bg-primary-50 dark:hover:bg-primary-800/50 transition-colors"
+                    >
+                      <Settings className="w-4 h-4" />
+                      Dashboard
+                    </Link>
+                  </div>
+                  <div className="border-t border-primary-100 dark:border-primary-700 py-1">
+                    <button
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        signOut();
+                      }}
+                      className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           )}
         </div>
 
@@ -94,28 +131,11 @@ export default function Navbar() {
           className="md:hidden p-2 rounded-lg transition-all duration-200 ease-out hover:bg-primary-700"
           aria-label="Toggle menu"
         >
-          <svg
-            className="w-6 h-6 transition-transform duration-200 ease-out"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {mobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
+          {mobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </div>
 
@@ -139,27 +159,30 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {isAuthenticated ? (
-              <Link
-                to="/admin"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 bg-accent-500 text-primary-900 font-semibold rounded-lg text-center transition-all duration-200 ease-out hover:bg-accent-400"
-              >
-                Admin
-              </Link>
-            ) : (
-              <Link
-                to="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className={cn(
-                  "px-4 py-2 rounded-lg font-medium transition-all duration-200 ease-out",
-                  isActive("/login")
-                    ? "bg-primary-700 text-white"
-                    : "text-primary-200 hover:bg-primary-700 hover:text-white"
-                )}
-              >
-                Login
-              </Link>
+            {isAuthenticated && (
+              <div className="border-t border-primary-700 pt-3 mt-1 space-y-2">
+                <div className="px-4 py-2 text-xs text-primary-400 uppercase tracking-wider font-semibold">
+                  Account
+                </div>
+                <Link
+                  to="/admin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-3 px-4 py-2 rounded-lg text-primary-200 hover:bg-primary-700 hover:text-white transition-all duration-200 ease-out"
+                >
+                  <Settings className="w-4 h-4" />
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    signOut();
+                  }}
+                  className="flex items-center gap-3 w-full px-4 py-2 rounded-lg text-red-400 hover:bg-red-950/30 hover:text-red-300 transition-all duration-200 ease-out"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
+                </button>
+              </div>
             )}
           </div>
         </div>

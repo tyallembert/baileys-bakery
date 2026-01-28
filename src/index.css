@@ -85,9 +85,8 @@ body {
 }
 
 /* Smooth transitions for theme changes and interactions */
-/* Note: transform is excluded so individual elements can control their own transform transitions */
 * {
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, scale, translate;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useConvexAuth } from "convex/react";
 import { Navigate } from "react-router";
+import { AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,7 +19,6 @@ import { PAGE_SEO } from "@/lib/seo";
 export default function Login() {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const { signIn } = useAuthActions();
-  const [flow, setFlow] = useState<"signIn" | "signUp">("signIn");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -43,11 +43,9 @@ export default function Login() {
     setSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    console.log("Submitting with flow:", formData.get("flow"));
 
     // Add timeout to detect if promise never resolves
     const timeoutId = setTimeout(() => {
-      console.error("signIn timed out after 10s");
       setError("Sign in is taking too long. Please try again.");
       setSubmitting(false);
     }, 10000);
@@ -55,18 +53,13 @@ export default function Login() {
     signIn("password", formData)
       .then(() => {
         clearTimeout(timeoutId);
-        console.log("signIn resolved successfully");
-        console.log("isAuthenticated after signIn:", isAuthenticated);
-        console.log("localStorage auth token:", localStorage.getItem("__convexAuthToken"));
         // Force a check after a delay
         setTimeout(() => {
-          console.log("isAuthenticated after 1s:", isAuthenticated);
           window.location.href = "/admin"; // Force redirect as fallback
         }, 1000);
       })
       .catch((error) => {
         clearTimeout(timeoutId);
-        console.error("Sign in error:", error);
         const message = error instanceof Error ? error.message : String(error);
         handleAuthError(message);
         setSubmitting(false);
@@ -77,9 +70,7 @@ export default function Login() {
     if (message.includes("InvalidSecret") || message.includes("invalid") || message.includes("password")) {
       setError("Incorrect email or password. Please try again.");
     } else if (message.includes("not found") || message.includes("no user")) {
-      setError("No account found with this email. Please sign up first.");
-    } else if (message.includes("already exists") || message.includes("duplicate")) {
-      setError("An account with this email already exists. Please sign in instead.");
+      setError("No account found with this email.");
     } else if (message.includes("network") || message.includes("fetch")) {
       setError("Unable to connect. Please check your internet connection.");
     } else {
@@ -107,12 +98,10 @@ export default function Login() {
             <span className="text-3xl">🧁</span>
           </div>
           <CardTitle className="font-display text-2xl font-bold text-primary-800 dark:text-primary-100">
-            {flow === "signIn" ? "Welcome Back" : "Create Account"}
+            Admin Login
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            {flow === "signIn"
-              ? "Sign in to manage your bakery content"
-              : "Create an admin account"}
+            Sign in to manage your bakery content
           </CardDescription>
         </CardHeader>
         <CardContent className="pt-4">
@@ -148,24 +137,12 @@ export default function Login() {
                 required
                 className="rounded-xl h-12 bg-muted/50 border-border/50 focus:border-primary-400 focus:ring-primary-400"
               />
-              <input name="flow" type="hidden" value={flow} />
+              <input name="flow" type="hidden" value="signIn" />
             </div>
 
             {error && (
               <div className="flex items-start gap-3 p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800/50 rounded-xl">
-                <svg
-                  className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-red-700 dark:text-red-300">
                   {error}
                 </p>
@@ -182,28 +159,11 @@ export default function Login() {
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   Please wait...
                 </span>
-              ) : flow === "signIn" ? (
-                "Sign In"
               ) : (
-                "Sign Up"
+                "Sign In"
               )}
             </Button>
           </form>
-
-          <div className="mt-6 pt-6 border-t border-border/50 text-center">
-            <button
-              type="button"
-              onClick={() => {
-                setFlow(flow === "signIn" ? "signUp" : "signIn");
-                setError(null);
-              }}
-              className="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 font-medium transition-colors duration-200 ease-out"
-            >
-              {flow === "signIn"
-                ? "Need an account? Sign up"
-                : "Already have an account? Sign in"}
-            </button>
-          </div>
         </CardContent>
       </Card>
     </div>

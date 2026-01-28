@@ -1,4 +1,5 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
+import { useEffect } from "react";
+import { createBrowserRouter, RouterProvider, Outlet, useLocation } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -16,9 +17,20 @@ const queryClient = new QueryClient({
   },
 });
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function Layout() {
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollToTop />
       <Navbar />
       <main className="flex-1">
         <Outlet />

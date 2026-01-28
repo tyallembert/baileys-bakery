@@ -13,6 +13,8 @@ export default function Admin() {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const { signOut } = useAuthActions();
 
+  console.log("Admin page - isLoading:", isLoading, "isAuthenticated:", isAuthenticated);
+
   if (isLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">

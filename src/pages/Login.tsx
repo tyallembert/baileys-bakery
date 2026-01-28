@@ -37,20 +37,53 @@ export default function Login() {
     return <Navigate to="/admin" replace />;
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    formData.set("flow", flow);
+    console.log("Submitting with flow:", formData.get("flow"));
 
-    try {
-      await signIn("password", formData);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Authentication failed");
-    } finally {
+    // Add timeout to detect if promise never resolves
+    const timeoutId = setTimeout(() => {
+      console.error("signIn timed out after 10s");
+      setError("Sign in is taking too long. Please try again.");
       setSubmitting(false);
+    }, 10000);
+
+    signIn("password", formData)
+      .then(() => {
+        clearTimeout(timeoutId);
+        console.log("signIn resolved successfully");
+        console.log("isAuthenticated after signIn:", isAuthenticated);
+        console.log("localStorage auth token:", localStorage.getItem("__convexAuthToken"));
+        // Force a check after a delay
+        setTimeout(() => {
+          console.log("isAuthenticated after 1s:", isAuthenticated);
+          window.location.href = "/admin"; // Force redirect as fallback
+        }, 1000);
+      })
+      .catch((error) => {
+        clearTimeout(timeoutId);
+        console.error("Sign in error:", error);
+        const message = error instanceof Error ? error.message : String(error);
+        handleAuthError(message);
+        setSubmitting(false);
+      });
+  };
+
+  const handleAuthError = (message: string) => {
+    if (message.includes("InvalidSecret") || message.includes("invalid") || message.includes("password")) {
+      setError("Incorrect email or password. Please try again.");
+    } else if (message.includes("not found") || message.includes("no user")) {
+      setError("No account found with this email. Please sign up first.");
+    } else if (message.includes("already exists") || message.includes("duplicate")) {
+      setError("An account with this email already exists. Please sign in instead.");
+    } else if (message.includes("network") || message.includes("fetch")) {
+      setError("Unable to connect. Please check your internet connection.");
+    } else {
+      setError("Something went wrong. Please try again.");
     }
   };
 
@@ -115,6 +148,7 @@ export default function Login() {
                 required
                 className="rounded-xl h-12 bg-muted/50 border-border/50 focus:border-primary-400 focus:ring-primary-400"
               />
+              <input name="flow" type="hidden" value={flow} />
             </div>
 
             {error && (

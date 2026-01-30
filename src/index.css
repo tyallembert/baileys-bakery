@@ -110,6 +110,7 @@ body {
 }
 
 .animate-in {
+  opacity: 0;
   animation: animate-in var(--tw-animate-duration, 0.5s) ease-out forwards;
 }
 

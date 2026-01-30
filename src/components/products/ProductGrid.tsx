@@ -24,7 +24,7 @@ export default function ProductGrid({ products, columns = 4 }: ProductGridProps)
           <div
             key={product.id}
             className="animate-in fade-in slide-in-from-bottom-4 duration-500"
-            style={{ animationDelay: `${index * 75}ms`, animationFillMode: "backwards" }}
+            style={{ animationDelay: `${index * 75}ms`, animationFillMode: "both" }}
           >
             <ProductCard
               product={product}

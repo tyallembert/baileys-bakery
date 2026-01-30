@@ -6,13 +6,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { BUSINESS_INFO } from "@/lib/seo/constants";
 
 const defaultFaqs = [
   {
     _id: "1",
     question: "How do I place an order?",
     answer:
-      "You can browse our menu and place orders directly through our Bakesy shop. Simply click on any item and select 'Order on Bakesy' to get started.",
+      "You can browse Menu and place orders directly through our Bakesy shop. Simply click on any item and select 'Order on Bakesy' to get started.",
     order: 1,
   },
   {
@@ -76,7 +77,7 @@ export default function FAQ() {
             <AccordionItem
               key={faq._id}
               value={faq._id}
-              className="bg-card rounded-xl px-6 border border-border/50 shadow-sm transition-all duration-200 ease-out hover:shadow-md data-[state=open]:shadow-md data-[state=open]:border-primary-200 dark:data-[state=open]:border-primary-700"
+              className="bg-card rounded-xl px-6 my-4 border border-border/50 last:border-b shadow-sm transition-all duration-200 ease-out hover:shadow-md data-[state=open]:shadow-md data-[state=open]:border-primary-200 dark:data-[state=open]:border-primary-700"
               style={{ animationDelay: `${200 + index * 50}ms` }}
             >
               <AccordionTrigger className="text-left text-lg font-medium text-primary-800 dark:text-primary-100 hover:no-underline py-5 group">
@@ -100,7 +101,7 @@ export default function FAQ() {
             Still have questions? We'd love to hear from you!
           </p>
           <a
-            href="mailto:hello@baileysbakery.com"
+            href={`mailto:${BUSINESS_INFO.email}`}
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary-700 hover:bg-primary-600 text-white font-medium rounded-xl transition-all duration-200 ease-out hover:shadow-lg hover:shadow-primary-700/25 hover:-translate-y-0.5 active:scale-[0.98]"
           >
             <svg

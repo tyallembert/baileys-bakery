@@ -8,17 +8,16 @@ export const SITE_CONFIG = {
     "Fresh-baked artisan bread, pastries, cakes, and treats made with love in Waterbury, VT. Family-owned bakery serving Vermont since day one.",
   url: "https://baileysbaking.com",
   logo: "/logo.svg",
-  // TODO: Replace with actual JPG image (1200x630px) for best social media compatibility
   ogImage: "/og-image.svg",
-  themeColor: "#1e3a5f",
+  themeColor: "#3D5F63",
 } as const;
 
 export const BUSINESS_INFO = {
   name: "Bailey's Bakery",
-  legalName: "Bailey's Bakery LLC",
+  legalName: "Bailey's Bakery",
   // TODO: Update with actual address
   address: {
-    street: "123 Main Street",
+    street: "31 N Main St Apt 2",
     city: "Waterbury",
     state: "Vermont",
     stateCode: "VT",
@@ -28,7 +27,7 @@ export const BUSINESS_INFO = {
   },
   // TODO: Update with actual phone
   phone: "(802) 555-0123",
-  email: "hello@baileysbakery.com",
+  email: "mchughbailey@gmail.com",
   coordinates: {
     latitude: 44.3378,
     longitude: -72.7567,
@@ -100,7 +99,7 @@ export const PAGE_SEO = {
     canonical: "/",
   },
   about: {
-    title: "Our Story | Bailey's Bakery - Waterbury, Vermont",
+    title: "My Story | Bailey's Bakery - Waterbury, Vermont",
     description:
       "Learn about Bailey's Bakery, a family-owned artisan bakery in Waterbury, Vermont. Discover our passion for fresh-baked goods and community.",
     keywords: "baileys bakery story, waterbury vermont bakery, family bakery vermont, artisan bakery history",
@@ -109,7 +108,7 @@ export const PAGE_SEO = {
   menu: {
     title: "Menu - Fresh Baked Goods | Bailey's Bakery",
     description:
-      "Browse our menu of fresh-baked breads, pastries, cookies, cakes, and seasonal treats. Handcrafted daily in Waterbury, Vermont.",
+      "Browse Menu of fresh-baked breads, pastries, cookies, cakes, and seasonal treats. Handcrafted daily in Waterbury, Vermont.",
     keywords: "bakery menu waterbury, fresh bread vermont, pastries waterbury vt, cakes vermont, cookies bakery",
     canonical: "/menu",
   },
@@ -131,7 +130,6 @@ export const PAGE_SEO = {
 
 export const SOCIAL_LINKS = {
   // TODO: Add actual social media links when available
-  facebook: "",
-  instagram: "",
-  twitter: "",
+  facebook: "https://www.facebook.com/bailey.mchugh.7",
+  instagram: "https://www.instagram.com/bbaking.etc/",
 } as const;

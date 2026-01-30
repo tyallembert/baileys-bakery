@@ -1145,7 +1145,7 @@ export default function Hero() {
 
   const title = content?.heroTitle ?? "Welcome to Baileys Bakery";
   const subtitle = content?.heroSubtitle ?? "Homemade treats baked with love";
-  const ctaText = content?.heroCtaText ?? "View Our Menu";
+  const ctaText = content?.heroCtaText ?? "View Menu";
   const ctaLink = content?.heroCtaLink ?? "/menu";
 
   return (
@@ -1367,7 +1367,7 @@ const defaultFaqs = [
   {
     _id: "1",
     question: "How do I place an order?",
-    answer: "You can browse our menu and place orders directly through our Bakesy shop. Simply click on any item and select 'Order on Bakesy' to get started.",
+    answer: "You can browse Menu and place orders directly through our Bakesy shop. Simply click on any item and select 'Order on Bakesy' to get started.",
     order: 1,
   },
   {
@@ -1478,7 +1478,7 @@ export default function Menu() {
       <div className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl font-bold text-primary-800 mb-10 text-center">
-            Our Menu
+            Menu
           </h1>
           <div className="flex justify-center gap-4 mb-10">
             {[...Array(4)].map((_, i) => (
@@ -1498,7 +1498,7 @@ export default function Menu() {
   if (error) {
     return (
       <div className="py-20 px-6 text-center">
-        <h1 className="text-4xl font-bold text-primary-800 mb-4">Our Menu</h1>
+        <h1 className="text-4xl font-bold text-primary-800 mb-4">Menu</h1>
         <p className="text-muted-foreground">
           Unable to load menu. Please try again later.
         </p>
@@ -1514,7 +1514,7 @@ export default function Menu() {
     <div className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-primary-800 mb-10 text-center">
-          Our Menu
+          Menu
         </h1>
 
         {/* Category filters */}
@@ -1819,7 +1819,7 @@ export default function ContentForm() {
               id="heroCtaText"
               value={form.heroCtaText}
               onChange={(e) => updateField("heroCtaText", e.target.value)}
-              placeholder="View Our Menu"
+              placeholder="View Menu"
               className="rounded-xl"
             />
           </div>
@@ -2275,7 +2275,7 @@ export const seedContent = mutation({
     await ctx.db.insert("siteContent", {
       heroTitle: "Welcome to Baileys Bakery",
       heroSubtitle: "Homemade treats baked with love, right from my kitchen to your table",
-      heroCtaText: "View Our Menu",
+      heroCtaText: "View Menu",
       heroCtaLink: "/menu",
       heroImageUrl: "",
       aboutPreview: "At Baileys Bakery, every treat is made from scratch with the finest ingredients and a whole lot of love. From birthday cakes to holiday cookies, we're here to make your celebrations sweeter.",
@@ -2292,7 +2292,7 @@ Thank you for letting me be part of your special moments.`,
     const faqs = [
       {
         question: "How do I place an order?",
-        answer: "You can browse our menu and place orders directly through our Bakesy shop. Simply click on any item and select 'Order on Bakesy' to get started.",
+        answer: "You can browse Menu and place orders directly through our Bakesy shop. Simply click on any item and select 'Order on Bakesy' to get started.",
         order: 0,
       },
       {

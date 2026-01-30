@@ -11,7 +11,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, onClick }: ProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const imageUrl =
-    product.images[0]?.thumbnailUrl ?? product.image ?? "/placeholder-product.svg";
+    product.images[0]?.thumbnailUrl ?? product.image ?? "/placeholder-product.png";
 
   return (
     <article

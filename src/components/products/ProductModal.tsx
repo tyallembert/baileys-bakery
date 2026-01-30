@@ -26,8 +26,8 @@ export default function ProductModal({
   if (!product) return null;
 
   const imageUrl =
-    product.images[0]?.fullUrl ?? product.image ?? "/placeholder-product.svg";
-  const bakesyUrl = `https://bakesy.shop/b/baileys-bakery/${product.slug}`;
+    product.images[0]?.fullUrl ?? product.image ?? "/placeholder-product.png";
+  const bakesyUrl = `https://bakesy.shop/b/baileys-bakery/products/${product.slug}`;
 
   return (
     <Dialog open={open} onOpenChange={(open) => {

@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/card";
 import { SEO } from "@/components/seo";
 import { PAGE_SEO } from "@/lib/seo";
+import Logo from "@/components/layout/Logo";
 
 export default function Login() {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -95,7 +96,7 @@ export default function Login() {
         <CardHeader className="text-center pb-2">
           {/* Logo */}
           <div className="mx-auto mb-4 w-16 h-16 bg-primary-100 dark:bg-primary-800/50 rounded-2xl flex items-center justify-center">
-            <span className="text-3xl">🧁</span>
+            <Logo className="w-10 h-10 text-primary-700 dark:text-primary-200" />
           </div>
           <CardTitle className="font-display text-2xl font-bold text-primary-800 dark:text-primary-100">
             Admin Login

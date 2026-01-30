@@ -1,6 +1,6 @@
 import Logo from "./Logo";
 import { Link } from "react-router";
-import { BUSINESS_INFO } from "@/lib/seo";
+import { BUSINESS_INFO, SITE_CONFIG } from "@/lib/seo";
 
 export default function Footer() {
   return (
@@ -15,11 +15,11 @@ export default function Footer() {
             >
               <Logo className="h-8 w-8" />
               <span className="font-display font-bold text-lg tracking-[0.15em] uppercase">
-                Bailey's Bakery
+                {SITE_CONFIG.name}
               </span>
             </Link>
             <p className="mt-3 text-primary-400 text-sm text-center md:text-left">
-              Fresh-baked artisan treats made with love in Waterbury, Vermont.
+              {SITE_CONFIG.tagline}
             </p>
           </div>
 
@@ -60,16 +60,22 @@ export default function Footer() {
             </h3>
             <nav className="flex flex-col items-center md:items-start gap-2">
               <Link
+                to="/"
+                className="text-primary-300 hover:text-white transition-colors duration-200 text-sm"
+              >
+                Home
+              </Link>
+              <Link
                 to="/about"
                 className="text-primary-300 hover:text-white transition-colors duration-200 text-sm"
               >
-                About Us
+                About
               </Link>
               <Link
                 to="/menu"
                 className="text-primary-300 hover:text-white transition-colors duration-200 text-sm"
               >
-                Our Menu
+                Menu
               </Link>
               <a
                 href={`mailto:${BUSINESS_INFO.email}`}
@@ -84,8 +90,8 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-primary-800 mt-8 pt-8">
           <p className="text-center text-primary-400 text-sm">
-            &copy; {new Date().getFullYear()} Bailey's Bakery. Made with love in
-            Waterbury, Vermont.
+            &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. Made with love in{" "}
+            {BUSINESS_INFO.address.city}, {BUSINESS_INFO.address.state}.
           </p>
         </div>
       </div>

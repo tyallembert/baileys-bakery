@@ -25,7 +25,7 @@ export default function AboutPreview() {
           size="lg"
           className="border-2 border-primary-600 text-primary-700 dark:text-primary-300 dark:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/50 rounded-xl font-semibold transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md active:scale-[0.98]"
         >
-          <Link to="/about">Learn More About Us</Link>
+          <Link to="/about">Learn More About Me</Link>
         </Button>
       </div>
     </section>

@@ -8,7 +8,7 @@ const defaultFaqSchema = [
   {
     question: "How do I place an order?",
     answer:
-      "You can browse our menu and place orders directly through our Bakesy shop. Simply click on any item and select 'Order on Bakesy' to get started.",
+      "You can browse Menu and place orders directly through our Bakesy shop. Simply click on any item and select 'Order on Bakesy' to get started.",
   },
   {
     question: "How much notice do you need for orders?",

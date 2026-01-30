@@ -123,7 +123,7 @@ export default function ContentForm() {
                 id="heroCtaText"
                 value={form.heroCtaText}
                 onChange={(e) => updateField("heroCtaText", e.target.value)}
-                placeholder="View Our Menu"
+                placeholder="View Menu"
                 className="rounded-xl h-11 bg-muted/30 border-border/50"
               />
             </div>

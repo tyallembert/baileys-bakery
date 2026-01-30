@@ -34,17 +34,13 @@ export default function Hero() {
 
       </div>
 
-      {/* Decorative circles for depth */}
-      <div className="absolute top-10 left-10 w-64 h-64 bg-primary-600/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl" />
-
-      <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
-        <LogoLettering className="w-full max-w-md md:max-w-lg mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700" />
+      <div className="max-w-4xl mx-auto mb-12 text-center relative z-10 flex flex-col items-center">
+        <LogoLettering className="w-full max-w-md md:max-w-lg animate-in fade-in slide-in-from-bottom-4 duration-700" />
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
           <Button
             asChild
             size="lg"
-            className="bg-accent-500 hover:bg-accent-400 text-primary-900 font-bold text-lg px-10 py-7 rounded-2xl transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-accent-500/30 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-accent-500 hover:bg-accent-400 text-primary-900 font-bold text-lg px-10 py-7 rounded-xl transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-accent-500/30 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98]"
           >
             <Link to={ctaLink}>{ctaText}</Link>
           </Button>

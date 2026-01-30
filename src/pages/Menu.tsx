@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SEO, BreadcrumbSchema } from "@/components/seo";
 import { PAGE_SEO } from "@/lib/seo";
+import Logo from "@/components/layout/Logo";
 
 export default function Menu() {
   const { data: categories, isLoading, error } = useCategoriesWithProducts();
@@ -67,14 +68,14 @@ export default function Menu() {
             </svg>
           </div>
           <h1 className="font-display text-3xl font-bold text-primary-800 dark:text-primary-100 mb-4">
-            Our Menu
+            Menu
           </h1>
           <p className="text-muted-foreground mb-6">
             Unable to load menu. Please try again later.
           </p>
           <Button
             onClick={() => window.location.reload()}
-            className="bg-primary-600 hover:bg-primary-500"
+            className="bg-primary-600 hover:bg-primary-500 rounded-xl"
           >
             Try Again
           </Button>
@@ -105,10 +106,10 @@ export default function Menu() {
         {/* Header */}
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <span className="inline-block px-4 py-1 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-200 rounded-full text-sm font-medium mb-4">
-            Browse Our Selection
+            Browse The Selection
           </span>
           <h1 className="font-display text-4xl md:text-5xl font-bold text-primary-800 dark:text-primary-100 mb-4">
-            Our Menu
+            Menu
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto rounded-full" />
         </div>
@@ -165,7 +166,7 @@ export default function Menu() {
         {(!displayedCategories || displayedCategories.length === 0) && (
           <div className="text-center py-16">
             <div className="w-20 h-20 bg-muted/50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-4xl">🧁</span>
+              <Logo className="w-10 h-10 text-muted-foreground" />
             </div>
             <p className="text-muted-foreground text-lg">
               No items available at the moment.

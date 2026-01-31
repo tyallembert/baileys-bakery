@@ -17,7 +17,7 @@ export const BUSINESS_INFO = {
   legalName: "Bailey's Bakery",
   // TODO: Update with actual address
   address: {
-    street: "31 N Main St Apt 2",
+    street: "N Main St ",
     city: "Waterbury",
     state: "Vermont",
     stateCode: "VT",
@@ -26,7 +26,7 @@ export const BUSINESS_INFO = {
     countryCode: "US",
   },
   // TODO: Update with actual phone
-  phone: "(802) 555-0123",
+  phone: "",
   email: "mchughbailey@gmail.com",
   coordinates: {
     latitude: 44.3378,
